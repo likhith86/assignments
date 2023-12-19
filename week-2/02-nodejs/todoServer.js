@@ -45,5 +45,61 @@
   const app = express();
   
   app.use(bodyParser.json());
-  
+  let todos=[]
+  app.get("/todos",function(request,response){
+    response.status(200).json(todos)
+  })
+
+  app.get("/todos/:id",function(request,response){
+    let found=false
+    for(let i=0;i<todos.length;i++){
+      if(todos[i].id===parseInt(request.params.id)){
+        response.status(200).json(todos[i])
+        found=true
+      }
+    }
+    if(!found){
+      response.status(404).send("Not found")
+    }
+  })
+
+  app.post("/todos",function(request,response){
+    const newTodo={
+      id:Math.floor(Math.random()*1000000),
+      title:request.body.title,
+      description:request.body.description
+    }
+    todos.push(newTodo)
+    let nid=newTodo.id
+    response.status(201).json({id:nid})
+  })
+
+  app.put("/todos/:id",function(request,response){
+    const id=parseInt(request.params.id)
+    const index = todos.findIndex(todo => todo.id === id);
+    if(index!==-1){
+      todos[index].title=request.body.title
+      todos[index].description=request.body.description
+      response.status(200).send("updated successfully")
+    }
+    else{
+      response.status(404).send("Id not found")
+    }
+  })
+
+
+  app.delete("/todos/:id",function(request,response){
+    let initialLength=todos.length
+    const id=parseInt(request.params.id)
+    todos = todos.filter(todo => todo.id !== id);
+    if (todos.length < initialLength) {
+     response.status(200).send("Deleted successfully");
+    } else {
+     response.status(404).send("Not found");
+    }
+  })
+
+  app.use(function(request,response){
+    response.status(404).send("Route not found")
+  })
   module.exports = app;
