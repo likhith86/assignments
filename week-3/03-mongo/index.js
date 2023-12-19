@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
-mongoose.connect("mongodb+srv://admin:12345678910@cluster0.i1ig7ik.mongodb.net/courseSelling");
+mongoose.connect("mongodb-uri");
 
 // Define schemas
 const AdminSchema = new mongoose.Schema({
@@ -219,7 +219,7 @@ app.get('/user/purchasedCourses', userMiddleware, async (req, res) => {
             username:req.headers.username,
             password:req.headers.password
         })
-        const coursesPurchased=await Course.find({ _id: { $in: user.courseId } })
+        const coursesPurchased=await  Course.find({ _id: { $in: user.courseId } })
         if(coursesPurchased.lenght===0){
             res.status(200).json({
                 msg:"no course bought till now"
