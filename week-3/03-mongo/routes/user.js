@@ -30,7 +30,11 @@ router.post('/signup', (req, res) => {
 
 });
 
+<<<<<<< HEAD
 router.get('/courses', async (req, res) => {
+=======
+router.get('/courses', (req, res) => {
+>>>>>>> 44221a6567c34bcb8321268b6c0180e2a2a48d63
     // Implement listing all courses logic
     try{
         const courses=await Course.find()
@@ -42,7 +46,11 @@ router.get('/courses', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 router.post('/courses/:courseId', userMiddleware,async (req, res) => {
+=======
+router.post('/courses/:courseId', userMiddleware, (req, res) => {
+>>>>>>> 44221a6567c34bcb8321268b6c0180e2a2a48d63
     // Implement course purchase logic
     try{
         const user=await User.findOne({
@@ -61,7 +69,11 @@ router.post('/courses/:courseId', userMiddleware,async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 router.get('/purchasedCourses', userMiddleware, async (req, res) => {
+=======
+router.get('/purchasedCourses', userMiddleware, (req, res) => {
+>>>>>>> 44221a6567c34bcb8321268b6c0180e2a2a48d63
     // Implement fetching purchased courses logic
     try{
         const user=await User.findOne({
@@ -82,3 +94,5 @@ router.get('/purchasedCourses', userMiddleware, async (req, res) => {
         return res.status(500).send("internal server error")
     }
 });
+
+module.exports = router

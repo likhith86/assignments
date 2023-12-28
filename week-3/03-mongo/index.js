@@ -234,6 +234,13 @@ app.get('/user/purchasedCourses', userMiddleware, async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 app.listen(3000, () => {
     console.log(`Server is running on port 3000`);
+=======
+const PORT = 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+>>>>>>> 44221a6567c34bcb8321268b6c0180e2a2a48d63
 });
