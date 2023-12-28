@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
-mongoose.connect("mongodb-uri");
+mongoose.connect("mongodb+srv://admin:12345678910@cluster0.i1ig7ik.mongodb.net/courseSelling");
 
 // Define schemas
 const AdminSchema = new mongoose.Schema({
